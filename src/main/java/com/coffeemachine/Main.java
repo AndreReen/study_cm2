@@ -46,7 +46,7 @@ public class Main {
             try {
                 //expend beverage stock
                 Beverage beverage1 = getBeverage(userChoice);
-                beverage1.setQuantity(beverage1.getQuantity() - 1);
+                beverage1.setQuantity(expBev(beverage1));
                 updateBeverage(beverage1);
 
                 //record sale to DB
@@ -65,11 +65,8 @@ public class Main {
 
     public static String user_menu() {
 
-
         Scanner input = new Scanner(System.in);
-
         System.out.print("Enter your name to continue ");
-
         String user_selection = input.nextLine();
         return user_selection;
     }
@@ -78,14 +75,18 @@ public class Main {
 
         int selection;
         Scanner input = new Scanner(System.in);
-
         System.out.print("Enter drink id to buy or 0 to exit  ");
-
         selection = input.nextInt();
         return selection;
     }
 
     /* beverage methods*/
+
+    public static int expBev(Beverage beverage){
+        return beverage.getQuantity() - 1;
+
+    }
+
     public static Beverage getBeverage(int id) throws NonExistentEntityException {
         Optional<Beverage> Beverage = Beverage_DAO.get(id);
         return Beverage.orElseThrow(NonExistentBeverageException::new);
