@@ -13,3 +13,31 @@ VALUES ( 'cappucino', 10),
 ('americano', 10), 
 ('espresso', 10),
 ('latte', 10);
+
+
+
+CREATE TABLE public.cmcustomer
+(
+    id integer NOT NULL GENERATED ALWAYS AS IDENTITY ( INCREMENT 1 START 1 MINVALUE 1 MAXVALUE 2147483647 CACHE 1 ),
+    name character varying COLLATE pg_catalog."default" NOT NULL,
+    CONSTRAINT "unique" UNIQUE (name)
+)
+
+CREATE TABLE public.sale
+(
+    id integer NOT NULL GENERATED ALWAYS AS IDENTITY ( INCREMENT 1 START 1 MINVALUE 1 MAXVALUE 2147483647 CACHE 1 ),
+    customer character varying COLLATE pg_catalog."default",
+    beverage character varying COLLATE pg_catalog."default",
+    date timestamp with time zone DEFAULT CURRENT_TIMESTAMP,
+    CONSTRAINT sale_pkey PRIMARY KEY (id),
+    CONSTRAINT fkey_beverage FOREIGN KEY (beverage)
+        REFERENCES public.cmdata (cm_type) MATCH SIMPLE
+        ON UPDATE NO ACTION
+        ON DELETE NO ACTION
+        NOT VALID,
+    CONSTRAINT fkey_customer FOREIGN KEY (customer)
+        REFERENCES public.cmcustomer (name) MATCH SIMPLE
+        ON UPDATE NO ACTION
+        ON DELETE NO ACTION
+        NOT VALID
+)
