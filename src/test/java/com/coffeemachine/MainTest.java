@@ -16,7 +16,7 @@ public class MainTest {
     Main exp = new Main();
 
     @Test
-    public void test1() {
+    public void test_expBev() {
         testbev.setId(1);
         testbev.setName("cappucino");
         testbev.setQuantity(2);
@@ -25,7 +25,7 @@ public class MainTest {
     }
 
     @Test
-    public void test2() {
+    public void test_getBev() {
         Beverage testbev2 = new Beverage();
         try {
 
@@ -37,7 +37,7 @@ public class MainTest {
     }
 
     @Test
-    public void test3() {
+    public void test_getAllBev() {
         Collection<Beverage> Beverages = new ArrayList<>();
 
             Beverages = exp.getAllBeverages();
@@ -46,7 +46,7 @@ public class MainTest {
     }
 
     @Test
-    public void test4() {
+    public void test_getCust() {
         Customer testcustomer = new Customer();
         try {
 
@@ -58,7 +58,7 @@ public class MainTest {
     }
 
     @Test
-    public void test5() {
+    public void test_GetAllCust() {
         Collection<Customer> Customers = new ArrayList<>();
 
         Customers = exp.getAllCustomers();
