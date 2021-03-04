@@ -65,7 +65,7 @@ public class PostgreSqlDao implements Dao<Beverage, Integer> {
 
                     Beverages.add(Beverage);
 
-                    //LOGGER.log(Level.INFO, "Found {0} in database", Beverage);
+                    LOGGER.log(Level.INFO, "Found {0} in database", Beverage);
                 }
 
             } catch (SQLException ex) {

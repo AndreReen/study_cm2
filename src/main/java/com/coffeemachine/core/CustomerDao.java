@@ -1,6 +1,7 @@
 package com.coffeemachine.core;
 
 import com.coffeemachine.dao.Dao;
+import com.coffeemachine.dao.Daolayer2;
 import com.coffeemachine.model.Customer;
 
 import java.sql.*;
@@ -20,6 +21,9 @@ public  class CustomerDao implements Dao<Customer, Integer> {
     public CustomerDao() {
         this.connection = JdbcConnection.getConnection();
     }
+
+    //@Override
+    //public void getName(){}
 
     @Override
     public Optional<Customer> get(int id) {
@@ -50,16 +54,16 @@ public  class CustomerDao implements Dao<Customer, Integer> {
     @Override
     public Collection<Customer> getAll() {
         Collection<Customer> Customers = new ArrayList<>();
-        String sql = "SELECT * FROM cmdata";
+        String sql = "SELECT * FROM cmcustomer";
 
         connection.ifPresent(conn -> {
             try (Statement statement = conn.createStatement();
                  ResultSet resultSet = statement.executeQuery(sql)) {
 
                 while (resultSet.next()) {
-                    int id = resultSet.getInt("cm_id");
-                    String name = resultSet.getString("cm_type");
-                    Integer quantity = resultSet.getInt("cm_qnty");
+                    int id = resultSet.getInt("id");
+                    String name = resultSet.getString("name");
+
 
 
                     Customer Customer = new Customer(id, name);
@@ -147,7 +151,7 @@ public  class CustomerDao implements Dao<Customer, Integer> {
     public void delete(Customer customer) {
         String message = "The Customer to be deleted should not be null";
         Customer nonNullCustomer = Objects.requireNonNull(customer, message);
-        String sql = "DELETE FROM cmdata WHERE cm_id = ?";
+        String sql = "DELETE FROM cmcustomer WHERE id = ?";
 
         connection.ifPresent(conn -> {
             try (PreparedStatement statement = conn.prepareStatement(sql)) {
