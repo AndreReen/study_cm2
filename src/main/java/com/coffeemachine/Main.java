@@ -2,9 +2,10 @@ package com.coffeemachine;
 
 import com.coffeemachine.core.CustomerDao;
 import com.coffeemachine.core.NonExistentBeverageException;
-import com.coffeemachine.core.PostgreSqlDao;
+import com.coffeemachine.core.BeverageDao;
 import com.coffeemachine.core.SaleDao;
 import com.coffeemachine.dao.Dao;
+import com.coffeemachine.dao.DaoforSale;
 import com.coffeemachine.model.Beverage;
 import com.coffeemachine.model.Customer;
 import com.coffeemachine.model.NonExistentEntityException;
@@ -19,9 +20,9 @@ import java.util.logging.Logger;
 public class Main {
 
     private static final Logger LOGGER = Logger.getLogger(Main.class.getName());
-    private static final Dao<Beverage, Integer> Beverage_DAO = new PostgreSqlDao();
+    private static final Dao<Beverage, Integer> Beverage_DAO = new BeverageDao();
     private static final Dao<Customer, Integer> Customer_DAO = new CustomerDao();
-    private static final Dao<Sale, Integer> Sale_DAO = new SaleDao();
+    private static final DaoforSale<Sale, Integer> Sale_DAO = new SaleDao();
 
     public static void main(String[] args) {
 
@@ -97,7 +98,7 @@ public class Main {
     }
 
     public static void updateBeverage(Beverage beverage) {
-        Beverage_DAO.update(beverage);
+         Beverage_DAO.update(beverage);
     }
 
     public static Optional<Integer> addBeverage(Beverage beverage) {

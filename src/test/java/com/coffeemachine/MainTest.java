@@ -1,5 +1,7 @@
 package com.coffeemachine;
 
+import com.coffeemachine.core.BeverageDao;
+import com.coffeemachine.dao.Dao;
 import com.coffeemachine.model.Beverage;
 import com.coffeemachine.model.Customer;
 import com.coffeemachine.model.NonExistentEntityException;
@@ -8,15 +10,20 @@ import org.testng.annotations.Test;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Optional;
 import java.util.logging.Level;
+
+import static org.mockito.Mockito.*;
+
 
 public class MainTest {
 
-    Beverage testbev = new Beverage();
+
     Main exp = new Main();
 
     @Test
     public void test_expBev() {
+        Beverage testbev = new Beverage();
         testbev.setId(1);
         testbev.setName("cappucino");
         testbev.setQuantity(2);
@@ -44,6 +51,44 @@ public class MainTest {
 
         Assert.assertNotNull(Beverages);
     }
+
+
+    @Test
+    public void test_updateBev() {
+
+
+    }
+
+    @Test
+    public void test_addBev() {
+        Main expdao = new Main();
+
+        Beverage testbev = new Beverage();
+        testbev.setId(5);
+        testbev.setName("Macchiato");
+        testbev.setQuantity(10);
+
+        expdao.addBeverage(testbev);
+
+        Beverage testbev2 = new Beverage();
+        try {
+            testbev2 = exp.getBeverage(5);
+        } catch (NonExistentEntityException ex) { }
+
+        Assert.assertEquals(testbev2,testbev);
+    }
+
+
+
+    @Test
+    public void test_deleteBev() {
+
+
+    }
+
+
+
+
 
     @Test
     public void test_getCust() {

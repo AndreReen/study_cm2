@@ -1,7 +1,6 @@
 package com.coffeemachine.core;
 
 import com.coffeemachine.dao.Dao;
-import com.coffeemachine.dao.Daolayer2;
 import com.coffeemachine.model.Customer;
 
 import java.sql.*;
@@ -15,7 +14,7 @@ import java.util.logging.Logger;
 public  class CustomerDao implements Dao<Customer, Integer> {
 
 
-    private static final Logger LOGGER = Logger.getLogger(PostgreSqlDao.class.getName());
+    private static final Logger LOGGER = Logger.getLogger(BeverageDao.class.getName());
     private final Optional<Connection> connection;
 
     public CustomerDao() {

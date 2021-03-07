@@ -11,12 +11,12 @@ import java.util.Optional;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-public class PostgreSqlDao implements Dao<Beverage, Integer> {
+public class BeverageDao implements Dao<Beverage, Integer> {
 
-    private static final Logger LOGGER = Logger.getLogger(PostgreSqlDao.class.getName());
+    private static final Logger LOGGER = Logger.getLogger(BeverageDao.class.getName());
     private final Optional<Connection> connection;
 
-    public PostgreSqlDao() {
+    public BeverageDao() {
         this.connection = JdbcConnection.getConnection();
     }
 
@@ -137,6 +137,7 @@ public class PostgreSqlDao implements Dao<Beverage, Integer> {
 
                 LOGGER.log(Level.INFO, "Was the Beverage updated successfully? {0}",
                         numberOfUpdatedRows > 0);
+
 
             } catch (SQLException ex) {
                 LOGGER.log(Level.SEVERE, null, ex);

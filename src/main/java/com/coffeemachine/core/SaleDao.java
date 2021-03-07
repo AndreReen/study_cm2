@@ -1,6 +1,7 @@
 package com.coffeemachine.core;
 
 import com.coffeemachine.dao.Dao;
+import com.coffeemachine.dao.DaoforSale;
 import com.coffeemachine.model.Beverage;
 import com.coffeemachine.model.Sale;
 
@@ -12,7 +13,7 @@ import java.util.Optional;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-public class SaleDao implements Dao<Sale, Integer> {
+public class SaleDao implements DaoforSale<Sale, Integer> {
 
 
 
@@ -23,13 +24,6 @@ public class SaleDao implements Dao<Sale, Integer> {
         this.connection = JdbcConnection.getConnection();
     }
 
-    @Override
-    public Optional<Sale> get(int id) { return Optional.empty();}
-
-    @Override
-    public Collection<Sale> getAll() {
-        Collection<Sale> sales = new ArrayList<>();
-        return sales;}
 
     @Override
     public Optional<Integer> save(Sale sale) {
@@ -71,10 +65,5 @@ public class SaleDao implements Dao<Sale, Integer> {
         });
     }
 
-    @Override
-    public void update(Sale sale) {}
-
-    @Override
-    public void delete(Sale sale){};
 
 }
