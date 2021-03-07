@@ -55,7 +55,20 @@ public class MainTest {
 
     @Test
     public void test_updateBev() {
+        Main expdao = new Main();
 
+        Beverage testbev = new Beverage();
+        testbev.setId(23);
+        testbev.setName("Macchiato");
+        testbev.setQuantity(3);
+
+        expdao.updateBeverage(testbev);
+        Beverage testbev2 = new Beverage();
+
+        try {testbev2 = expdao.getBeverage(23);}
+        catch (NonExistentEntityException ex){}
+
+        Assert.assertEquals(testbev,testbev2);
 
     }
 
@@ -77,17 +90,6 @@ public class MainTest {
 
         Assert.assertEquals(testbev2,testbev);
     }
-
-
-
-    @Test
-    public void test_deleteBev() {
-
-
-    }
-
-
-
 
 
     @Test

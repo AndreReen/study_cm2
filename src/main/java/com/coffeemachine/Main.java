@@ -105,9 +105,6 @@ public class Main {
         return Beverage_DAO.save(beverage);
     }
 
-    public static void deleteBeverage(Beverage beverage) {
-        Beverage_DAO.delete(beverage);
-    }
 
     /* customer methods*/
     public static Customer getCustomer(int id) throws NonExistentEntityException {
@@ -119,17 +116,11 @@ public class Main {
         return Customer_DAO.getAll();
     }
 
-    public static void updateCustomer(Customer customer) {
-        Customer_DAO.update(customer);
-    }
 
     public static Optional<Integer> addCustomer(Customer customer) {
         return Customer_DAO.save(customer);
     }
 
-    public static void deleteCustomer(Customer customer) {
-        Customer_DAO.delete(customer);
-    }
 
     /* sale methods*/
     public static Optional<Integer> addSale(Sale sale) {
